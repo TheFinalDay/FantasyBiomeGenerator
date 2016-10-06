@@ -25,7 +25,7 @@ import javax.swing.event.MouseInputListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
+ * FBG's JFrame
  * @author final
  */
 public class FBGFrame extends JFrame implements MouseInputListener {
@@ -84,6 +84,12 @@ public class FBGFrame extends JFrame implements MouseInputListener {
     private JScrollPane scroller;
     private JScrollPane scrollerInstructions = new JScrollPane(txaInstructions);
 
+    /**
+     * Default FBGFrame constructor
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws URISyntaxException 
+     */
     public FBGFrame() throws FileNotFoundException, IOException, URISyntaxException {
 
         setResizable(false);
@@ -120,6 +126,12 @@ public class FBGFrame extends JFrame implements MouseInputListener {
 
     }
 
+    /**
+     * createInterface.
+     * Places every component in the frame nice and tidily.
+     * Also initiates most interactive components such as buttons.
+     * @throws IOException
+     */
     private void createInterface() throws IOException {
 
         mnuFile.add(mniNew);
@@ -215,6 +227,11 @@ public class FBGFrame extends JFrame implements MouseInputListener {
 
     }
 
+    /**
+     * addToolBarComponents.
+     * Adds the components to the ToolBar
+     * @param toolBar The ToolBar to which the components will be added.
+     */
     private void addToolBarComponents(JToolBar toolBar) {
 
         toolBar.add(btnSkyLine);
@@ -236,6 +253,10 @@ public class FBGFrame extends JFrame implements MouseInputListener {
 
     }
 
+    /**
+     * createEvents.
+     * Adds ActionListeners to most interactive components.
+     */
     private void createEvents() {
 
         btnSkyLine.addActionListener(new ActionListener() {
@@ -491,6 +512,13 @@ public class FBGFrame extends JFrame implements MouseInputListener {
 
     }
 
+    /**
+     * uiManager.
+     * Sets the script written on the right of the Frame and
+     * enables or disables the components. Works differently depending
+     * on the current step.
+     * @param s Current step reached by the user.
+     */
     private void uiManager(int s) {
 
         switch (s) {
@@ -607,10 +635,23 @@ public class FBGFrame extends JFrame implements MouseInputListener {
         }
     }
 
+    /**
+     * nextStep.
+     * Sets the next step.
+     * @param nextStep The next step to be set.
+     */
     public void setNextStep(int nextStep) {
         step = nextStep;
     }
 
+    /**
+     * newGenerator.
+     * Prompts a JOptionPane for the user to choose a File on its
+     * computer to use with FBG, then calls the ScrollPane's client 
+     * to display this image and the grid.
+     * Sets the next step to 1.
+     * @throws IOException 
+     */
     private void newGenerator() throws IOException {
         int choice = JOptionPane.showConfirmDialog(null, "Choose the base map "
                 + "for the generator.\n\nIt's important that your chosen image "
@@ -642,6 +683,15 @@ public class FBGFrame extends JFrame implements MouseInputListener {
         }
     }
 
+    /**
+     * locateFBGSave.
+     * Prompts a JOptionPane for the user to choose a save file to
+     * open in step 0. 
+     * Sets next step to 1;
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws ClassNotFoundException 
+     */
     private void locateFBGSave() throws IOException, FileNotFoundException, ClassNotFoundException {
         String path;
         int choice = JOptionPane.showConfirmDialog(null, "Choose a \".FBG\" file on your computer", "Notice", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
