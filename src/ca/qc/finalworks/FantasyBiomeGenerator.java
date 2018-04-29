@@ -18,6 +18,7 @@ public class FantasyBiomeGenerator {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException, URISyntaxException {
         FBGFrame frame = new FBGFrame();
+	System.out.println("test");
         
     }
     
